@@ -1,0 +1,29 @@
+{
+  "name": "jinx-three-js",
+  "version": "1.0.0",
+  "description": "This is mono-repo for learning three-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/harikautilya/jinx-three-js.git"
+  },
+  "keywords": [
+    "threejs",
+    "reactjs"
+  ],
+  "author": "kautilya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harikautilya/jinx-three-js/issues"
+  },
+  "homepage": "https://github.com/harikautilya/jinx-three-js#readme",
+  "workspaces": [
+    "apps/1_camera"
+  ],
+  "devDependencies": {
+    "turbo": "^2.0.11"
+  }
+}
