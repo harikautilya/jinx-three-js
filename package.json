@@ -4,7 +4,7 @@
   "description": "This is mono-repo for learning three-js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run-camera": "turbo run dev --filter=1_camera"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,6 @@
   ],
   "devDependencies": {
     "turbo": "^2.0.11"
-  }
+  },
+  "packageManager": "npm@10.1.0"
 }
