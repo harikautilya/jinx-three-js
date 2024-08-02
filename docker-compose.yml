@@ -1,0 +1,11 @@
+services:
+  node:
+    build:
+      dockerfile: ./DockerFile.devcontainer
+    container_name: three-js
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/workspace/jinx
+
+

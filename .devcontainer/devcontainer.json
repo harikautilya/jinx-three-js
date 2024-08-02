@@ -1,0 +1,16 @@
+{
+	"name": "Three js",
+	"dockerComposeFile": [
+		"../docker-compose.yml"
+	],
+	"service": "node",
+	"workspaceFolder": "/workspace/jinx",
+	"mounts": [
+		"source=~/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": []
+		}
+	}
+}
