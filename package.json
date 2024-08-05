@@ -4,7 +4,7 @@
   "description": "This is mono-repo for learning three-js",
   "main": "index.js",
   "scripts": {
-    "run-camera": "turbo run dev --filter=1_camera"
+    "camera": "turbo run dev --filter=1_camera"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,14 @@
     "apps/1_camera"
   ],
   "devDependencies": {
+    "@react-three/drei": "^9.109.2",
+    "leva": "^0.9.35",
     "turbo": "^2.0.11"
+  },
+  "overrides": {
+    "leva": {
+      "@radix-ui/react-portal": "1.0.2"
+    }
   },
   "packageManager": "npm@10.1.0"
 }
