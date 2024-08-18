@@ -5,15 +5,11 @@ import { multiplyColorWithConstant, multiplyColors } from './utils';
 import './App.css';
 
 function Box({ size = 5, materialColor, enableMovement = false, ...props }) {
-  // This reference will give us direct access to the mesh
   const meshRef = useRef()
-
-  // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
     if (enableMovement)
       meshRef.current.rotation.x += delta;
   })
-  // Return view, these are regular three.js elements expressed in JSX
   return (
     <mesh
       {...props}
@@ -29,12 +25,25 @@ const BoldText = ({ text }) => (<p style={{ fontWeight: "500" }}>{text}</p>)
 const Text = ({ text }) => (<p>{text}</p>)
 
 
-const Container = ({ title, content, perceivedColor, children }) => {
+const Container = ({ title, content, perceivedColor, materialColor, lightModel }) => {
   console.log(perceivedColor)
   return (
     <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
       <div>
-        {children}
+        <div>
+          <Canvas
+            camera={{ position: [8, 8, 8], fov: 50 }}>
+            {lightModel}
+            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} />
+          </Canvas>
+        </div>
+        <div>
+          <Canvas
+            camera={{ position: [8, 8, 8], fov: 50 }}>
+            {lightModel}
+            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} enableMovement />
+          </Canvas>
+        </div>
       </div>
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
         <Text text={"Perceived color"} />
@@ -96,83 +105,31 @@ function App() {
       <Container
         title="Ambient Light"
         content="This provides a evently distributed lighting across the scene"
-        perceivedColor={perceivedColor}>
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <ambientLight color={lightDiffusionColor} intensity={intensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} />
-          </Canvas>
-        </div>
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <ambientLight color={lightDiffusionColor} intensity={intensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} enableMovement />
-          </Canvas>
-        </div>
-      </Container>
-
+        perceivedColor={perceivedColor}
+        lightModel={<ambientLight color={lightDiffusionColor} intensity={intensity} />}
+        materialColor={materialColor}
+      />
       <Container
         title="Hemisphere Light"
         content="This provide a directionaly light from top to bottom with two different color know as sky for top and earth for bottom."
-        perceivedColor={perceivedColor} >
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <hemisphereLight color={lightDiffusionColor} groundColor="black" intensity={intensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} />
-          </Canvas>
-        </div>
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <hemisphereLight color={lightDiffusionColor} groundColor="black" intensity={intensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} enableMovement />
-          </Canvas>
-        </div>
-      </Container>
-
+        perceivedColor={perceivedColor}
+        lightModel={<hemisphereLight color={lightDiffusionColor} groundColor="black" intensity={intensity} />}
+        materialColor={materialColor}
+      />
       <Container
         title="Directional Light"
         content="This provide a directionaly light from top to bottom with two different color know as sky for top and earth for bottom."
-        perceivedColor={perceivedColor}>
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <directionalLight color={lightDiffusionColor} position={[5, 5, 0]} intensity={intensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} />
-          </Canvas>
-        </div>
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <directionalLight color={lightDiffusionColor} position={[5, 5, 0]} intensity={intensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} enableMovement />
-          </Canvas>
-        </div>
-      </Container>
-
+        perceivedColor={perceivedColor}
+        lightModel={<directionalLight color={lightDiffusionColor} position={[5, 5, 0]} intensity={intensity} />}
+        materialColor={materialColor}
+      />
       <Container
         title="Point Light"
         content="A point projects light in all the direction from the position"
-        perceivedColor={perceivedColorPointLight}>
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <pointLight color={lightDiffusionColor} position={[5, 5, 0]} intensity={pointLightIntensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} />
-          </Canvas>
-        </div>
-        <div>
-          <Canvas
-            camera={{ position: [8, 8, 8], fov: 50 }}>
-            <pointLight color={lightDiffusionColor} position={[6, 6, 0]} intensity={pointLightIntensity} />
-            <Box materialColor={materialColor} size={5} position={[0, 0, 0]} enableMovement />
-          </Canvas>
-        </div>
-      </Container>
-
+        perceivedColor={perceivedColorPointLight}
+        lightModel={<pointLight color={lightDiffusionColor} position={[5, 5, 0]} intensity={pointLightIntensity} />}
+        materialColor={materialColor}
+      />
     </div>
   );
 }
