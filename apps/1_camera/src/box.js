@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
-function Box({ size = 5, materialColor, enableMovement = false, ...props }) {
+function Box({ size = 5, materialColor, enableMovement = false, position = [0, 0, 0], ...props }) {
   const meshRef = useRef()
   useFrame((state, delta) => {
     if (enableMovement)
@@ -9,8 +9,8 @@ function Box({ size = 5, materialColor, enableMovement = false, ...props }) {
   })
   return (
     <mesh
+      position={position}
       {...props}
-
       ref={meshRef}>
       <boxGeometry args={[size, size, size]} />
       <meshStandardMaterial color={materialColor} />

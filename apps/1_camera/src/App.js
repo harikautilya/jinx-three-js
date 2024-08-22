@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { folder, useControls } from "leva";
 import { multiplyColorWithConstant, multiplyColors } from '@jinx/base/color';
 import { Container } from './container';
-import { rotate } from 'three/webgpu';
 import { Flex } from '@jinx/base/flex';
 
 
@@ -72,38 +71,83 @@ function App() {
     }
   })
 
-  const { x, y, z, near, far, fov } = useControls("Perspective Camera", {
-    x: {
+  const { px, py, pz, pnear, pfar, pfov } = useControls("Perspective Camera", {
+    px: {
+      label: "x",
       value: 10,
       min: 1,
-      max: 10
+      max: 30
     },
-    y: {
+    py: {
+      label: "y",
       value: 10,
       min: 1,
-      max: 10
+      max: 30
     },
-    z: {
+    pz: {
+      label: "z",
       value: 5,
       min: 1,
-      max: 10
+      max: 30
     },
-    near: {
+    pnear: {
+      label: "near",
       value: 2,
       min: 1,
       max: 10
     },
-    far: {
+    pfar: {
+      label: "far",
       value: 10,
       min: 1,
-      max: 10
+      max: 40
     },
-    fov: {
-      value: 100,
+    pfov: {
+      label: "fov",
+      value: 50,
       min: 1,
       max: 180
     }
   })
+
+  const { ox, oy, oz, ozoom, ofar, onear } = useControls("Orthographic Camera", {
+    ox: {
+      label: "x",
+      value: 10,
+      min: 1,
+      max: 10
+    },
+    oy: {
+      label: "y",
+      value: 10,
+      min: 1,
+      max: 10
+    },
+    oz: {
+      label: "z",
+      value: 5,
+      min: 1,
+      max: 10
+    },
+    onear: {
+      label: "near",
+      value: 2,
+      min: 1,
+      max: 10
+    },
+    ofar: {
+      label: "far",
+      value: 10,
+      min: 1,
+      max: 40
+    },
+    ozoom: {
+      label: "zoom",
+      value: 0.1,
+      min: 0.1,
+      max: 0.3
+    }
+  });
 
   const [perceivedColor, setPerceivedColor] = useState("#000000");
   const [perceivedColorPointLight, setPerceivedColorPointLight] = useState("#000000");
@@ -130,18 +174,24 @@ function App() {
       width: '100vw',
       height: "100vh",
     }}>
-      <Flex direction="row">
+      <Flex direction="row" height={"100%"}>
         <Container
           title="Ambient Light"
-          content="This provides a evently distributed lighting across the scene"
+          content="This provides a evently distributed lighting across the scene irrespective of the object placement and direction"
           perceivedColor={perceivedColor}
           lightModel={<ambientLight color={lightDiffusionColor} intensity={intensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [x, y, z],
-            near: near,
-            far: far,
-            fov: fov
+            position: [px, py, pz],
+            near: pnear,
+            far: pfar,
+            fov: pfov,
+          }}
+          orthographicCameraProps={{
+            position: [ox, oy, oz],
+            near: onear,
+            far: ofar,
+            zoom: ozoom,
           }}
         />
         <Container
@@ -151,10 +201,16 @@ function App() {
           lightModel={<hemisphereLight color={lightDiffusionColor} groundColor="black" intensity={intensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [x, y, z],
-            near: near,
-            far: far,
-            fov: fov,
+            position: [px, py, pz],
+            near: pnear,
+            far: pfar,
+            fov: pfov,
+          }}
+          orthographicCameraProps={{
+            position: [ox, oy, oz],
+            near: onear,
+            far: ofar,
+            zoom: ozoom,
           }}
         />
         <Container
@@ -164,23 +220,35 @@ function App() {
           lightModel={<directionalLight color={lightDiffusionColor} position={[directionLightX, directionLightY, directionLightZ]} intensity={intensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [x, y, z],
-            near: near,
-            far: far,
-            fov: fov,
+            position: [px, py, pz],
+            near: pnear,
+            far: pfar,
+            fov: pfov,
+          }}
+          orthographicCameraProps={{
+            position: [ox, oy, oz],
+            near: onear,
+            far: ofar,
+            zoom: ozoom,
           }}
         />
         <Container
           title="Point Light"
-          content="A point projects light in all the direction from the position"
+          content="A point projects light in all the direction from the position. This light is spread across the scene"
           perceivedColor={perceivedColorPointLight}
           lightModel={<pointLight color={lightDiffusionColor} position={[pointLightX, pointLightY, pointLightZ]} intensity={pointLightIntensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [x, y, z],
-            near: near,
-            far: far,
-            fov: fov,
+            position: [px, py, pz],
+            near: pnear,
+            far: pfar,
+            fov: pfov,
+          }}
+          orthographicCameraProps={{
+            position: [ox, oy, oz],
+            near: onear,
+            far: ofar,
+            zoom: ozoom,
           }}
         />
       </Flex>
