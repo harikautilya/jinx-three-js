@@ -1,11 +1,37 @@
 {
-  "name": "jinx-three-js",
+  "packageManager": "npm@10.1.0",
+  "name": "@jinx/threejs",
   "version": "1.0.0",
   "description": "This is mono-repo for learning three-js",
+  "author": "kautilya",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "run-camera": "turbo run dev --filter=1_camera"
+    "camera": "npm run dev -w @jinx/camera"
   },
+  "workspaces": [
+    "./apps/*"
+  ],
+  "dependencies": {
+    "@react-three/fiber": "8.16.8",
+    "@types/three": "0.167.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-scripts": "5.0.1",
+    "three": "0.167.1"
+  },
+  "devDependencies": {
+    "customize-cra": "^1.0.0",
+    "leva": "0.9.35",
+    "react-app-rewired": "^2.2.1",
+    "turbo": "2.0.11"
+  },
+  "overrides": {
+    "leva": {
+      "@radix-ui/react-portal": "1.0.2"
+    }
+  },
+  "homepage": "https://github.com/harikautilya/jinx-three-js#readme",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/harikautilya/jinx-three-js.git"
@@ -14,17 +40,7 @@
     "threejs",
     "reactjs"
   ],
-  "author": "kautilya",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/harikautilya/jinx-three-js/issues"
-  },
-  "homepage": "https://github.com/harikautilya/jinx-three-js#readme",
-  "workspaces": [
-    "apps/1_camera"
-  ],
-  "devDependencies": {
-    "turbo": "^2.0.11"
-  },
-  "packageManager": "npm@10.1.0"
+  }
 }
