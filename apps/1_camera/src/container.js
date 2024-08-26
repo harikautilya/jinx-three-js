@@ -9,7 +9,6 @@ import { ChangeAwareOrthographicCamera, ChangeAwarePerspectiveCamera } from "@ji
 
 const LightComponent = ({ lightModel, materialColor, perceivedColor }) => (
   <>
-
     <Canvas camera={{ position: [8, 8, 8], fov: 50 }}>
       {lightModel}
       <Box materialColor={materialColor} />
@@ -18,7 +17,6 @@ const LightComponent = ({ lightModel, materialColor, perceivedColor }) => (
       {lightModel}
       <Box materialColor={materialColor} enableMovement />
     </Canvas>
-
     <Flex
       direction="row"
       jc="center"
@@ -84,7 +82,6 @@ const Container = ({
       lightModel={lightModel}
       materialColor={materialColor}
       orthographicCameraProps={orthographicCameraProps} />
-
   </Flex >
 )
 
