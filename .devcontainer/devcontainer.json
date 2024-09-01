@@ -10,7 +10,9 @@
 	],
 	"customizations": {
 		"vscode": {
-			"extensions": []
+			"extensions": [
+				"dbaeumer.vscode-eslint"
+			]
 		}
 	}
 }
