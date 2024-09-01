@@ -7,6 +7,6 @@ const TextComponent = ({ text, bold = false }, ref) => (
   >{text}</p>
 );
 
-const Text = forwardRef(TextComponent)
+const Text = forwardRef(TextComponent);
 
 export { Text };

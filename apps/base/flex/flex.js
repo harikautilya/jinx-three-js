@@ -13,9 +13,8 @@ const FlexComponent = ({ flex, direction, jc, ai, children, height }, ref) => (
     ref={ref}>
     {children}
   </div>
-)
+);
 
 const Flex = forwardRef(FlexComponent);
 
-
-export { Flex }
+export { Flex };

@@ -10,7 +10,16 @@
 	],
 	"customizations": {
 		"vscode": {
-			"extensions": []
+			"extensions": [
+				"dbaeumer.vscode-eslint"
+			],
+			"settings": {
+				"editor.formatOnSave": false,
+				"editor.insertSpaces": false,
+				"eslint.validate": [
+					"javascript"
+				]
+			}
 		}
 	}
 }
