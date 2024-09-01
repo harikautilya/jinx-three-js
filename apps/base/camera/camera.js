@@ -6,14 +6,20 @@ const ChangeAwarePerspectiveCamera = ({ position, fov, near, far, aspect, lookAt
   const ref = useRef();
   const set = useThree((state) => state.set);
   useEffect(() => {
+
     set({ camera: ref.current });
     if (ref.current) {
+
       ref.current.updateProjectionMatrix();
       if (lookAt)
-        ref.current.lookAt(5, 5, 0)
+        ref.current.lookAt(5, 5, 0);
+
     }
-  }, [position, fov, near, far, set, aspect, lookAt, set]);
+
+  }, [ position, fov, near, far, set, aspect, lookAt, set ]);
+
   useFrame(() => ref.current.updateMatrixWorld());
+
   return (
     <perspectiveCamera
       ref={ref}
@@ -24,21 +30,28 @@ const ChangeAwarePerspectiveCamera = ({ position, fov, near, far, aspect, lookAt
       far={far}
     />
   );
+
 };
 
 const ChangeAwareOrthographicCamera = ({ position, zoom, far, near, lookAt = false }) => {
+
   const ref = useRef();
   const set = useThree((state) => state.set);
   useEffect(() => {
+
     set({ camera: ref.current });
     if (ref.current) {
+
       ref.current.updateProjectionMatrix();
       if (lookAt)
-        ref.current.lookAt(5, 5, 0)
+        ref.current.lookAt(5, 5, 0);
 
     }
-  }, [position, zoom, far, near, lookAt, set]);
+
+  }, [ position, zoom, far, near, lookAt, set ]);
+
   useFrame(() => ref.current.updateMatrixWorld());
+
   return (
     <orthographicCamera
       ref={ref}
@@ -49,6 +62,7 @@ const ChangeAwareOrthographicCamera = ({ position, zoom, far, near, lookAt = fal
       zoom={zoom}
     />
   );
-}
 
-export { ChangeAwarePerspectiveCamera, ChangeAwareOrthographicCamera }
+};
+
+export { ChangeAwarePerspectiveCamera, ChangeAwareOrthographicCamera };

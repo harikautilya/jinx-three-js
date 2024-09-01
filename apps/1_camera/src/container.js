@@ -5,15 +5,13 @@ import { Text } from "@jinx/base/text";
 import { Flex } from '@jinx/base/flex';
 import { ChangeAwareOrthographicCamera, ChangeAwarePerspectiveCamera } from "@jinx/base/camera";
 
-
-
 const LightComponent = ({ lightModel, materialColor, perceivedColor }) => (
   <>
-    <Canvas camera={{ position: [8, 8, 8], fov: 50 }}>
+    <Canvas camera={{ position: [ 8, 8, 8 ], fov: 50 }}>
       {lightModel}
       <Box materialColor={materialColor} />
     </Canvas>
-    <Canvas camera={{ position: [8, 8, 8], fov: 50 }}>
+    <Canvas camera={{ position: [ 8, 8, 8 ], fov: 50 }}>
       {lightModel}
       <Box materialColor={materialColor} enableMovement />
     </Canvas>
@@ -37,10 +35,10 @@ const PerspectiveCameraComponent = ({ lightModel, materialColor, perspectiveCame
       {lightModel}
       <Box
         materialColor={materialColor}
-        position={[5, 5, 0]} />
+        position={[ 5, 5, 0 ]} />
     </Canvas>
   </>
-)
+);
 
 const OrthographicCameraComponent = ({ lightModel, materialColor, orthographicCameraProps }) => (
   <>
@@ -51,10 +49,10 @@ const OrthographicCameraComponent = ({ lightModel, materialColor, orthographicCa
       {lightModel}
       < Box
         materialColor={materialColor}
-        position={[5, 5, 0]} />
+        position={[ 5, 5, 0 ]} />
     </Canvas>
   </>
-)
+);
 
 const Container = ({
   title,
@@ -65,7 +63,6 @@ const Container = ({
   perspectiveCameraProps,
   orthographicCameraProps
 }) => (
-
   <Flex
     direction="column">
     <Text text={title} bold />
@@ -83,7 +80,7 @@ const Container = ({
       materialColor={materialColor}
       orthographicCameraProps={orthographicCameraProps} />
   </Flex >
-)
+);
 
 
 export { Container };

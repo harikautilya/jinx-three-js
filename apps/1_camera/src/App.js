@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { folder, useControls } from "leva";
 import { multiplyColorWithConstant, multiplyColors } from '@jinx/base/color';
 import { Container } from './container';
@@ -69,7 +69,7 @@ function App() {
     materialColor: {
       value: "#ffA500"
     }
-  })
+  });
 
   const { px, py, pz, pnear, pfar, pfov } = useControls("Perspective Camera", {
     px: {
@@ -108,7 +108,7 @@ function App() {
       min: 1,
       max: 180
     }
-  })
+  });
 
   const { ox, oy, oz, ozoom, ofar, onear } = useControls("Orthographic Camera", {
     ox: {
@@ -149,24 +149,25 @@ function App() {
     }
   });
 
-  const [perceivedColor, setPerceivedColor] = useState("#000000");
-  const [perceivedColorPointLight, setPerceivedColorPointLight] = useState("#000000");
+  const [ perceivedColor, setPerceivedColor ] = useState("#000000");
+  const [ perceivedColorPointLight, setPerceivedColorPointLight ] = useState("#000000");
 
 
   useEffect(() => {
+
     const mixedColor = multiplyColors(lightDiffusionColor, materialColor);
     const finalColor = multiplyColorWithConstant(mixedColor, intensity);
-    setPerceivedColor(finalColor)
+    setPerceivedColor(finalColor);
 
-  }, [lightDiffusionColor, materialColor, intensity])
+  }, [ lightDiffusionColor, materialColor, intensity ]);
 
   useEffect(() => {
 
     const mixedColor = multiplyColors(lightDiffusionColor, materialColor);
     const finalColor = multiplyColorWithConstant(mixedColor, pointLightIntensity);
-    setPerceivedColorPointLight(finalColor)
+    setPerceivedColorPointLight(finalColor);
 
-  }, [lightDiffusionColor, materialColor, pointLightIntensity])
+  }, [ lightDiffusionColor, materialColor, pointLightIntensity ]);
 
 
   return (
@@ -182,13 +183,13 @@ function App() {
           lightModel={<ambientLight color={lightDiffusionColor} intensity={intensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [px, py, pz],
+            position: [ px, py, pz ],
             near: pnear,
             far: pfar,
             fov: pfov,
           }}
           orthographicCameraProps={{
-            position: [ox, oy, oz],
+            position: [ ox, oy, oz ],
             near: onear,
             far: ofar,
             zoom: ozoom,
@@ -201,13 +202,13 @@ function App() {
           lightModel={<hemisphereLight color={lightDiffusionColor} groundColor="black" intensity={intensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [px, py, pz],
+            position: [ px, py, pz ],
             near: pnear,
             far: pfar,
             fov: pfov,
           }}
           orthographicCameraProps={{
-            position: [ox, oy, oz],
+            position: [ ox, oy, oz ],
             near: onear,
             far: ofar,
             zoom: ozoom,
@@ -217,16 +218,16 @@ function App() {
           title="Directional Light"
           content="This provide a directionaly light from top to bottom with two different color know as sky for top and earth for bottom."
           perceivedColor={perceivedColor}
-          lightModel={<directionalLight color={lightDiffusionColor} position={[directionLightX, directionLightY, directionLightZ]} intensity={intensity} />}
+          lightModel={<directionalLight color={lightDiffusionColor} position={[ directionLightX, directionLightY, directionLightZ ]} intensity={intensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [px, py, pz],
+            position: [ px, py, pz ],
             near: pnear,
             far: pfar,
             fov: pfov,
           }}
           orthographicCameraProps={{
-            position: [ox, oy, oz],
+            position: [ ox, oy, oz ],
             near: onear,
             far: ofar,
             zoom: ozoom,
@@ -236,16 +237,16 @@ function App() {
           title="Point Light"
           content="A point projects light in all the direction from the position. This light is spread across the scene"
           perceivedColor={perceivedColorPointLight}
-          lightModel={<pointLight color={lightDiffusionColor} position={[pointLightX, pointLightY, pointLightZ]} intensity={pointLightIntensity} />}
+          lightModel={<pointLight color={lightDiffusionColor} position={[ pointLightX, pointLightY, pointLightZ ]} intensity={pointLightIntensity} />}
           materialColor={materialColor}
           perspectiveCameraProps={{
-            position: [px, py, pz],
+            position: [ px, py, pz ],
             near: pnear,
             far: pfar,
             fov: pfov,
           }}
           orthographicCameraProps={{
-            position: [ox, oy, oz],
+            position: [ ox, oy, oz ],
             near: onear,
             far: ofar,
             zoom: ozoom,
@@ -254,6 +255,7 @@ function App() {
       </Flex>
     </div>
   );
+
 }
 
 export default App;

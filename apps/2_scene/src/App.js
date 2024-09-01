@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 function App() {
 
@@ -10,7 +9,8 @@ function App() {
     }}>
       Alive
     </div >
-  )
+  );
+
 }
 
 export default App;
