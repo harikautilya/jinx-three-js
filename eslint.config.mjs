@@ -63,12 +63,7 @@ export default [
       }],
       "space-in-parens": ["off"],
       "space-infix-ops": ["error"],
-      "space-unary-ops": ["error", {
-        "words": true,
-        "nonwords": true,
-        "overrides": {
-        }
-      }],
+      "space-unary-ops": ["off"],
 
       "keyword-spacing": ["error", { "before": true, "after": true }],
       "padding-line-between-statements": [
