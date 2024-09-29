@@ -7,8 +7,13 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "camera": "npm run dev -w @jinx/camera",
-    "scene": "npm run dev -w @jinx/scene"
+    "dev:camera": "turbo run dev --filter=@jinx/camera",
+    "dev:scene": "turbo run dev --filter=@jinx/scene",
+    "dev:mesh" : "turbo run dev --filter=@jinx/mesh",
+    "turbo-build": "turbo run build",
+    "turbo-force-build": "turbo run build --force",
+    "turbo-dry-build": "turbo run build --dry"
+
   },
   "workspaces": [
     "./apps/*"
