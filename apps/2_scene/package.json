@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@jinx/base": "^1.0.0"
+    "@jinx/base": "*"
   },
   "scripts": {
     "dev": " WATCHPACK_POLLING=true react-app-rewired start",

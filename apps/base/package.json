@@ -8,5 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kautilya",
-  "license": "MIT"
+  "license": "MIT",
+  "exports":{ 
+    "./flex": "./flex/index.js",
+    "./camera": "./camera/index.js",
+    "./color": "./color/index.js",
+    "./text": "./text/index.js"
+  }
 }
